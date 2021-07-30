@@ -1,0 +1,71 @@
+#include<stdio.h>
+#include<stdlib.h>
+void PushQ(int *ar,int *f,int *r,int new,int max)
+{
+    if(*r==max-1)
+    printf("The rear end has been reached\n");
+    else
+    {
+        ar[++(*r)]=new;
+    }
+}
+void PopQ(int *ar,int *f,int *r)
+{
+    if(*f>*r)
+    {
+        printf("Queue is empty\n");
+    }
+    else
+    {
+        printf("Deleted element :%d\n",ar[*f]);
+        (*f)++;
+    }
+    
+}
+void display(int *ar,int f,int r)
+{
+    printf("The queue is as follows\n");
+    for(int i=f;i<=r;i++)
+    {
+        printf("%d  ",ar[i]);
+    }
+}
+int main()
+{
+    int max,ch,n;
+    printf("Enter max size of Queue\n");
+    scanf("%d",&max);
+    int arr[max];
+    int f=0,r=-1;
+    printf("0.Exit\n");
+    printf("1.Insert into Queue\n");
+    printf("2.Delete into Queue\n");
+    printf("3.Display Queue\n");
+    printf("Queue will be displayed after each operation\n");
+    while(1)
+    {
+        printf("\nEnter your choice\n");
+        scanf("%d",&ch);
+        switch(ch)
+        {
+            case 0:
+            exit(0);
+            break;
+            case 1:
+            printf("Enter value to be inserted\n");
+            scanf("%d",&n);
+            PushQ(arr,&f,&r,n,max);
+            display(arr,f,r);
+            break;
+            case 2:
+            PopQ(arr,&f,&r);
+            display(arr,f,r);
+            break;
+            case 3:
+            display(arr,f,r);
+            break;
+            default:
+            printf("Wrong Choice\n");
+        }
+    }
+}
